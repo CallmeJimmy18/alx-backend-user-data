@@ -24,13 +24,12 @@ class Auth():
 
         if path in excluded_paths:
             return False
-        
+
         for excluded_path in excluded_paths:
             if path.startswith(excluded_path):
                 return False
 
         return True
-
 
     def authorization_header(self, request=None) -> str:
         """
@@ -44,9 +43,8 @@ class Auth():
         if 'Authorization' in headers:
             auth_header = headers['Authorization']
             return auth_header
-        
-        return None
 
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
