@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Module for all Session authentication viewa.
 """
+from typing import Tuple
 from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models.user import User
@@ -8,7 +9,7 @@ from os import getenv
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-def login() -> str:
+def login() -> Tuple[str, int]:
     """Posts all user data
     """
     user_email = request.form.get('email')
@@ -33,12 +34,11 @@ def login() -> str:
 
 @app_views.route('/auth_session/logout', methods=['DELETE'],
                  strict_slashes=False)
-def logout() -> str:
+def logout() -> Tuple[str, int]:
     """Logs out of session
     """
     from api.v1.app import auth
     destroy_session = auth.destroy_session(request)
     if not destroy_session:
         abort(404)
-    else:
-        return jsonify({}), 200
+    return jsonify({})
