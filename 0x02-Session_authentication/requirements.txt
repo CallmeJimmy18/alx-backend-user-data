@@ -1,0 +1,5 @@
+Flask==1.1.2
+Flask-Cors==3.0.10
+Jinja2==3.0.3
+requests==2.26.0
+pycodestyle==2.8.0
